@@ -1145,7 +1145,7 @@ const CONFIG = {
   // Used by the contact form. Sign up free at https://formspree.io,
   // create a form, and paste your endpoint here, e.g.
   // "https://formspree.io/f/abcd1234"
-  formspreeEndpoint: "",
+  formspreeEndpoint: "https://api.web3forms.com/submit",
 
   socials: [
     { label: "Instagram", url: "https://www.instagram.com/saif_motions/" },
@@ -1520,10 +1520,13 @@ form.addEventListener('submit', async (e) => {
   status.className = 'form-status';
 
   try {
+    const formData = new FormData(form);
+    formData.append("access_key", "bb2dd521-5f2f-42b0-ae71-7dc8b9ae07a4");
+
     const res = await fetch(CONFIG.formspreeEndpoint, {
       method: 'POST',
       headers: { 'Accept': 'application/json' },
-      body: new FormData(form)
+      body: formData
     });
     if (res.ok){
       status.textContent = 'Thanks — your message is on its way. I\'ll reply soon.';

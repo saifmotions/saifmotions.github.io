@@ -1,9 +1,1545 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Meri Site</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Saif Ali — Sr. Graphic Designer & Video Editor</title>
+<meta name="description" content="Portfolio of Saif Ali — Sr. Graphic Designer & Video Editor.">
+
+<!--
+  ====================================================================
+  HOW TO EDIT THIS PORTFOLIO (no coding needed)
+  ====================================================================
+  1. Scroll down to the big "CONFIG" object inside the <script> tag
+     near the bottom of this file (search for "EDIT YOUR INFO BELOW").
+  2. Change the text values (name, role, about, tools, work items, email).
+  3. For images: replace the "src" links with paths to your own photos,
+     e.g. "assets/poster-1.jpg" (put an "assets" folder next to this file).
+  4. For videos: same idea — set "src" to your video file, e.g.
+     "assets/reel-1.mp4". Add a "poster" image too (the thumbnail
+     shown before it plays).
+  5. For the contact form to actually deliver messages to your inbox:
+       a. Go to https://formspree.io and make a free account.
+       b. Create a new form, copy the endpoint it gives you
+          (looks like https://formspree.io/f/abcd1234).
+       c. Paste it into CONFIG.formspreeEndpoint below.
+     Until you do this, the form will tell visitors it isn't connected
+     yet instead of silently failing.
+  6. To put this online for free: upload this file (and your assets
+     folder) to Netlify Drop (netlify.com/drop) or GitHub Pages.
+     Both give you a free public link you can send to clients.
+  ====================================================================
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg: #0e1011;
+    --bg-soft: #121415;
+    --surface: #17191b;
+    --surface-hover: #1e2123;
+    --border: #2a2d2f;
+    --text: #f2f3ee;
+    --text-muted: #8c9092;
+    --accent: #d8ff4f;
+    --accent-dim: #9cb23a;
+    --radius: 14px;
+    --max: 1180px;
+    --display: 'Space Grotesk', sans-serif;
+    --body: 'Inter', sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--body);
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+
+  img, video{ display:block; max-width:100%; }
+
+  a{ color:inherit; text-decoration:none; }
+
+  ::selection{ background:var(--accent); color:#0e1011; }
+
+  :focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+    border-radius:4px;
+  }
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px;
+  }
+
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--accent);
+  }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:fixed;
+    top:0; left:0; right:0;
+    z-index:100;
+    background:
+      linear-gradient(rgba(216,255,79,0.035), rgba(216,255,79,0.035)),
+      rgba(14,16,17,0.45);
+    backdrop-filter:blur(20px) saturate(160%);
+    -webkit-backdrop-filter:blur(20px) saturate(160%);
+    border-bottom:1px solid rgba(255,255,255,0.07);
+    box-shadow:0 1px 0 rgba(255,255,255,0.04) inset;
+    transition:border-color .3s ease, background .3s ease, box-shadow .3s ease;
+  }
+  header.scrolled{
+    border-bottom-color:rgba(255,255,255,0.09);
+    background:
+      linear-gradient(rgba(216,255,79,0.04), rgba(216,255,79,0.04)),
+      rgba(14,16,17,0.65);
+    box-shadow:0 1px 0 rgba(255,255,255,0.05) inset, 0 8px 24px rgba(0,0,0,0.18);
+  }
+  nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:18px 28px;
+    max-width:var(--max);
+    margin:0 auto;
+  }
+  .logo{
+    font-family:var(--display);
+    font-weight:700;
+    font-size:18px;
+    letter-spacing:-0.01em;
+  }
+  .logo span{ color:var(--accent); }
+  .nav-links{
+    display:flex;
+    gap:36px;
+    list-style:none;
+    font-size:14px;
+    color:var(--text-muted);
+  }
+  .nav-links a{ transition:color .2s ease; position:relative; }
+  .nav-links a:hover, .nav-links a.active{ color:var(--text); }
+  .nav-links a.active::after{
+    content:'';
+    position:absolute;
+    left:0; bottom:-6px;
+    width:100%; height:2px;
+    background:var(--accent);
+  }
+  .nav-cta{
+    font-family:var(--mono);
+    font-size:13px;
+    border:1px solid var(--border);
+    padding:9px 18px;
+    border-radius:100px;
+    transition:all .2s ease;
+    white-space:nowrap;
+  }
+  .nav-cta:hover{
+    border-color:var(--accent);
+    background:var(--accent);
+    color:#0e1011;
+  }
+  .nav-toggle{
+    display:none;
+    background:none; border:none; color:var(--text);
+    font-size:22px; cursor:pointer;
+  }
+
+  @media (max-width: 760px){
+    .nav-links{
+      position:fixed;
+      top:64px; left:0; right:0;
+      flex-direction:column;
+      gap:0;
+      background:var(--bg-soft);
+      border-bottom:1px solid var(--border);
+      max-height:0;
+      overflow:hidden;
+      transition:max-height .3s ease;
+    }
+    .nav-links.open{ max-height:300px; }
+    .nav-links li{ width:100%; }
+    .nav-links a{
+      display:block;
+      padding:16px 28px;
+      border-bottom:1px solid var(--border);
+    }
+    .nav-cta{ display:none; }
+    .nav-toggle{ display:block; }
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    padding-top:120px;
+    padding-bottom:60px;
+    position:relative;
+  }
+  .hero-noise{
+    position:absolute;
+    top:0; bottom:0;
+    left:50%;
+    width:100vw;
+    transform:translateX(-50%);
+    z-index:0;
+    pointer-events:none;
+    opacity:0.035;
+    overflow:hidden;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .hero-glow{
+    position:absolute;
+    width:560px;
+    height:560px;
+    background:var(--accent);
+    border-radius:50%;
+    filter:blur(150px);
+    opacity:0.16;
+    top:8%;
+    right:0;
+    z-index:0;
+    pointer-events:none;
+  }
+  .hero-glow-bottom{
+    position:absolute;
+    width:440px;
+    height:440px;
+    background:var(--accent);
+    border-radius:50%;
+    filter:blur(130px);
+    opacity:0.14;
+    bottom:-10%;
+    right:6%;
+    z-index:0;
+    pointer-events:none;
+  }
+  @media (max-width:760px){
+    .hero-glow{ width:320px; height:320px; filter:blur(90px); right:-60px; top:4%; }
+    .hero-glow-bottom{ width:260px; height:260px; filter:blur(80px); bottom:-5%; right:-40px; }
+  }
+  .hero-grid{
+    position:relative;
+    z-index:1;
+    display:grid;
+    grid-template-columns:1.2fr 0.8fr;
+    gap:48px;
+    align-items:center;
+  }
+  @media (max-width: 760px){
+    .hero-grid{
+      grid-template-columns:1fr;
+      gap:32px;
+    }
+  }
+  .hero-photo-wrap{
+    position:relative;
+    width:100%;
+    justify-self:end;
+  }
+  @media (max-width:760px){ .hero-photo-wrap{ justify-self:start; max-width:200px; order:-1; } }
+  .hero-photo-shape{
+    position:absolute;
+    left:14px; right:-14px; bottom:-14px;
+    top:30px;
+    background:var(--accent);
+    border-radius:20px;
+    z-index:0;
+    transform:translateY(0) scale(0.96);
+    opacity:0;
+    transition:transform .35s ease, opacity .35s ease;
+  }
+  .hero-photo-wrap:hover .hero-photo-shape{
+    transform:translateY(14px) scale(1);
+    opacity:1;
+  }
+  .hero-photo{
+    position:relative;
+    z-index:1;
+    width:100%;
+    aspect-ratio:1/1;
+    border-radius:20px;
+    overflow:hidden;
+    border:1px solid var(--border);
+    background:var(--surface);
+    transform:rotate(0deg);
+    transition:transform .35s ease;
+  }
+  .hero-photo-wrap:hover .hero-photo{
+    transform:rotate(-4deg);
+  }
+  .hero-photo img{
+    width:100%; height:100%;
+    object-fit:cover;
+    display:block;
+    filter:grayscale(1) contrast(1.05) brightness(0.92);
+    transform:scale(1.04);
+    transition:filter .6s cubic-bezier(.22,1,.36,1), transform .6s cubic-bezier(.22,1,.36,1);
+  }
+  .hero-photo-wrap:hover .hero-photo img{
+    filter:grayscale(0) contrast(1) brightness(1);
+    transform:scale(1);
+  }
+  .hero-photo::after{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:linear-gradient(120deg, transparent 30%, rgba(216,255,79,0.35) 45%, transparent 60%);
+    transform:translateX(-120%);
+    transition:transform .7s ease;
+    pointer-events:none;
+    z-index:2;
+  }
+  .hero-photo-wrap:hover .hero-photo::after{
+    transform:translateX(120%);
+  }
+  .hero-eyebrow{ margin-bottom:22px; display:flex; align-items:center; gap:10px; }
+  .hero-eyebrow::before{
+    content:'';
+    width:7px; height:7px;
+    background:var(--accent);
+    border-radius:50%;
+    box-shadow:0 0 12px var(--accent);
+  }
+  h1.hero-name{
+    font-family:var(--display);
+    font-weight:700;
+    font-size:clamp(48px, 9vw, 104px);
+    line-height:0.96;
+    letter-spacing:-0.02em;
+    max-width:14ch;
+    overflow:hidden;
+  }
+  .hero-name .accent{ color:var(--accent); }
+  .hero-name .word{
+    display:inline-block;
+    overflow:hidden;
+    vertical-align:top;
+  }
+  .hero-name .char{
+    display:inline-block;
+    transform:translateY(115%);
+    opacity:0;
+    animation:char-reveal .8s cubic-bezier(.22,1,.36,1) forwards;
+  }
+  @keyframes char-reveal{
+    to{ transform:translateY(0); opacity:1; }
+  }
+  .hero-eyebrow{ opacity:0; animation:fade-up-in .7s ease .05s forwards; }
+  .hero-sub{ opacity:0; animation:fade-up-in .7s ease .55s forwards; }
+  .hero-cta-row{ opacity:0; animation:fade-up-in .7s ease .7s forwards; }
+  .hero-meta{ opacity:0; animation:fade-up-in .7s ease .8s forwards; }
+  .hero-photo-wrap{ opacity:0; animation:fade-up-in .9s ease .3s forwards; }
+  @keyframes fade-up-in{
+    from{ opacity:0; transform:translateY(16px); }
+    to{ opacity:1; transform:translateY(0); }
+  }
+  .type-cursor{
+    display:inline-block;
+    width:3px;
+    height:0.85em;
+    background:var(--accent);
+    margin-left:6px;
+    vertical-align:-0.05em;
+    animation:blink-cursor 0.9s step-end infinite;
+  }
+  @keyframes blink-cursor{
+    0%, 49%{ opacity:1; }
+    50%, 100%{ opacity:0; }
+  }
+  .hero-sub{
+    margin-top:26px;
+    font-size:clamp(16px, 2vw, 19px);
+    color:var(--text-muted);
+    max-width:46ch;
+  }
+  .hero-cta-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:14px;
+    margin-top:32px;
+  }
+  .btn-primary, .btn-secondary{
+    font-family:var(--mono);
+    font-size:14px;
+    padding:13px 24px;
+    border-radius:100px;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    white-space:nowrap;
+    background:transparent;
+    border:1px solid var(--border);
+    color:var(--text);
+    transition:background .2s ease, color .2s ease, border-color .2s ease, transform .2s ease;
+  }
+  .btn-primary{
+    background:var(--accent);
+    color:#0e1011;
+    border-color:var(--accent);
+  }
+  .btn-primary:hover{
+    opacity:0.85;
+    transform:translateY(-2px);
+  }
+  .btn-secondary:hover{
+    background:var(--accent);
+    color:#0e1011;
+    border-color:var(--accent);
+    transform:translateY(-2px);
+  }
+  .btn-primary svg, .btn-secondary svg{ width:14px; height:14px; transition:transform .2s ease; }
+  .btn-primary:hover svg{ transform:translateX(3px); }
+  .hero-meta{
+    display:flex;
+    gap:28px;
+    margin-top:32px;
+    font-family:var(--mono);
+    font-size:13px;
+    color:var(--text-muted);
+    flex-wrap:wrap;
+  }
+  .hero-meta b{ color:var(--text); font-weight:500; }
+  .scroll-cue{
+    position:absolute;
+    bottom:28px; left:28px;
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:.1em;
+    color:var(--text-muted);
+    display:flex; align-items:center; gap:10px;
+  }
+  .scroll-cue .line{
+    width:1px; height:34px;
+    background:linear-gradient(to bottom, var(--accent), transparent);
+  }
+
+  /* ---------- MARQUEE (signature element: tools strip) ---------- */
+  .marquee-band{
+    border-top:1px solid var(--border);
+    border-bottom:1px solid var(--border);
+    padding:18px 0;
+    overflow:hidden;
+    white-space:nowrap;
+    position:relative;
+  }
+  .marquee-track{
+    display:inline-flex;
+    gap:48px;
+    animation: scroll-left 28s linear infinite;
+  }
+  .marquee-track span{
+    font-family:var(--mono);
+    font-size:14px;
+    color:var(--text-muted);
+    display:inline-flex;
+    align-items:center;
+    gap:48px;
+  }
+  .marquee-track span b{ color:var(--text); font-weight:500; }
+  .marquee-track span::after{ content:'•'; color:var(--accent); margin-left:48px; }
+  @keyframes scroll-left{
+    from{ transform:translateX(0); }
+    to{ transform:translateX(-50%); }
+  }
+
+  /* ---------- SCROLL REVEAL ---------- */
+  .reveal{
+    opacity:0;
+    transform:translateY(28px);
+    transition:opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1);
+  }
+  .reveal.in-view{ opacity:1; transform:translateY(0); }
+  .reveal-stagger > *{
+    opacity:0;
+    transform:translateY(18px);
+    transition:opacity .5s cubic-bezier(.22,1,.36,1), transform .5s cubic-bezier(.22,1,.36,1);
+  }
+  .reveal-stagger.in-view > *{ opacity:1; transform:translateY(0); }
+  .reveal-stagger > *:nth-child(1){ transition-delay:0ms; }
+  .reveal-stagger > *:nth-child(2){ transition-delay:50ms; }
+  .reveal-stagger > *:nth-child(3){ transition-delay:100ms; }
+  .reveal-stagger > *:nth-child(4){ transition-delay:150ms; }
+  .reveal-stagger > *:nth-child(5){ transition-delay:200ms; }
+  .reveal-stagger > *:nth-child(6){ transition-delay:250ms; }
+  .reveal-stagger > *:nth-child(7){ transition-delay:300ms; }
+  .reveal-stagger > *:nth-child(8){ transition-delay:350ms; }
+  .reveal-stagger > *:nth-child(9){ transition-delay:400ms; }
+  .reveal-stagger > *:nth-child(10){ transition-delay:450ms; }
+  .reveal-stagger > *:nth-child(n+11){ transition-delay:500ms; }
+
+  /* ---------- SECTION HEADERS ---------- */
+  section{ padding:120px 0; }
+  .section-divider{
+    border-top:1px solid var(--border);
+  }
+  .section-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:24px;
+    margin-bottom:56px;
+    flex-wrap:wrap;
+  }
+  h2.section-title{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:clamp(32px, 5vw, 52px);
+    letter-spacing:-0.01em;
+  }
+  .section-desc{
+    color:var(--text-muted);
+    max-width:38ch;
+    font-size:15px;
+  }
+
+  /* ---------- WORK / FILTERS ---------- */
+  .filters{
+    display:flex;
+    gap:10px;
+  }
+  .filter-btn{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.05em;
+    text-transform:uppercase;
+    padding:9px 16px;
+    border:1px solid var(--border);
+    border-radius:100px;
+    background:transparent;
+    color:var(--text-muted);
+    cursor:pointer;
+    transition:all .2s ease;
+  }
+  .filter-btn:hover{ color:var(--text); border-color:var(--text-muted); }
+  .filter-btn.active{
+    background:var(--accent);
+    color:#0e1011;
+    border-color:var(--accent);
+  }
+
+  .work-grid{
+    column-count:4;
+    column-gap:18px;
+  }
+  @media (max-width: 1100px){
+    .work-grid{ column-count:3; }
+  }
+  @media (max-width: 760px){
+    .work-grid{ column-count:2; }
+  }
+  @media (max-width: 480px){
+    .work-grid{ column-count:1; }
+  }
+
+  .work-card{
+    position:relative;
+    display:block;
+    width:100%;
+    margin:0 0 18px;
+    break-inside:avoid;
+    border-radius:var(--radius);
+    overflow:hidden;
+    background:var(--surface);
+    border:1px solid var(--border);
+    cursor:pointer;
+    transition:border-color .25s ease, transform .25s ease;
+  }
+  .work-card.hide{ display:none; }
+  .work-card:hover{ border-color:var(--accent-dim); transform:translateY(-4px); }
+  .work-media{
+    overflow:hidden;
+    background:#0c0d0e;
+    line-height:0;
+  }
+  .work-media img, .work-media video{
+    width:100%; height:auto; display:block;
+    transition:transform .5s ease;
+  }
+  .work-card:hover .work-media img,
+  .work-card:hover .work-media video{ transform:scale(1.04); }
+  .play-badge{
+    position:absolute;
+    top:16px; right:16px;
+    width:34px; height:34px;
+    border-radius:50%;
+    background:rgba(14,16,17,0.7);
+    border:1px solid var(--border);
+    display:flex; align-items:center; justify-content:center;
+    backdrop-filter:blur(4px);
+  }
+  .play-badge svg{ width:12px; height:12px; fill:var(--accent); }
+  .work-info{
+    padding:18px 20px 20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:12px;
+  }
+  .work-title{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:17px;
+  }
+  .work-tag{
+    font-family:var(--mono);
+    font-size:11px;
+    color:var(--accent-dim);
+    text-transform:uppercase;
+    letter-spacing:.05em;
+    white-space:nowrap;
+    margin-top:4px;
+  }
+
+  /* ---------- EXPERIENCE ---------- */
+  .experience-list{
+    display:flex;
+    flex-direction:column;
+  }
+  .exp-item{
+    position:relative;
+    padding:32px 0 32px 32px;
+    border-left:1px solid var(--border);
+    border-bottom:1px solid var(--border);
+  }
+  .exp-item:first-child{ padding-top:0; }
+  .exp-item:last-child{ padding-bottom:0; border-bottom:none; }
+  .exp-item::before{
+    content:'';
+    position:absolute;
+    left:-5px; top:38px;
+    width:10px; height:10px;
+    border-radius:50%;
+    background:var(--accent);
+    box-shadow:0 0 0 4px var(--bg);
+  }
+  .exp-item:first-child::before{ top:6px; }
+  .exp-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    gap:16px;
+    flex-wrap:wrap;
+    margin-bottom:12px;
+  }
+  .exp-role{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:clamp(18px, 2.4vw, 21px);
+    letter-spacing:-0.01em;
+  }
+  .exp-role .accent{ color:var(--accent); }
+  .exp-sep{ color:var(--text-muted); font-weight:400; margin:0 8px; }
+  .exp-duration{
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--text-muted);
+    white-space:nowrap;
+  }
+  .exp-points{
+    list-style:none;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    max-width:62ch;
+  }
+  .exp-points li{
+    color:var(--text-muted);
+    font-size:15px;
+    padding-left:18px;
+    position:relative;
+  }
+  .exp-points li::before{
+    content:'';
+    position:absolute;
+    left:0; top:9px;
+    width:5px; height:5px;
+    border-radius:50%;
+    background:var(--accent-dim);
+  }
+
+  /* ---------- STATS / RESULTS ---------- */
+  .stats-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:32px;
+  }
+  .stat-item{
+    padding:36px 24px;
+    border:1px solid var(--border);
+    border-radius:16px;
+    text-align:center;
+    background:var(--surface);
+    transition:border-color .3s ease, transform .3s ease;
+  }
+  .stat-item:hover{
+    border-color:var(--accent);
+    transform:translateY(-4px);
+  }
+  .stat-number{
+    font-family:var(--display);
+    font-weight:700;
+    font-size:clamp(36px, 5vw, 56px);
+    color:var(--accent);
+    letter-spacing:-0.02em;
+    line-height:1;
+  }
+  .stat-label{
+    margin-top:10px;
+    font-size:14px;
+    color:var(--text-muted);
+  }
+  @media (max-width:900px){
+    .stats-grid{ grid-template-columns:repeat(2, 1fr); }
+  }
+  @media (max-width:520px){
+    .stats-grid{ grid-template-columns:1fr; }
+  }
+
+  /* ---------- ABOUT ---------- */
+  .about-section{
+    background:var(--bg-soft);
+    border-top:1px solid var(--border);
+    border-bottom:1px solid var(--border);
+  }
+  .tools-section-head{
+    text-align:left;
+    margin-bottom:36px;
+  }
+  .tools-section-head h2{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:clamp(28px, 4vw, 40px);
+    letter-spacing:-0.01em;
+    margin-top:14px;
+  }
+  .skills-label{
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--text-muted);
+    text-transform:uppercase;
+    letter-spacing:.1em;
+    margin-bottom:18px;
+  }
+  .skills-list{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+  .skill-pill{
+    font-family:var(--mono);
+    font-size:13px;
+    padding:8px 14px;
+    border:1px solid var(--border);
+    border-radius:100px;
+    color:var(--text);
+  }
+
+  /* ---------- CONTACT ---------- */
+  .contact-section{
+    background:var(--bg-soft);
+    border-top:1px solid var(--border);
+    border-bottom:1px solid var(--border);
+    position:relative;
+    overflow:hidden;
+  }
+  .contact-glow{
+    position:absolute;
+    width:480px;
+    height:480px;
+    background:var(--accent);
+    border-radius:50%;
+    filter:blur(140px);
+    opacity:0.14;
+    top:-120px;
+    right:5%;
+    z-index:0;
+    pointer-events:none;
+  }
+  @media (max-width:760px){ .contact-glow{ width:300px; height:300px; filter:blur(90px); } }
+  .contact-grid{
+    position:relative;
+    z-index:1;
+    display:grid;
+    grid-template-columns:0.9fr 1.1fr;
+    gap:64px;
+  }
+  @media (max-width: 760px){ .contact-grid{ grid-template-columns:1fr; gap:40px; } }
+  .contact-form-card{
+    background:
+      linear-gradient(rgba(216,255,79,0.035), rgba(216,255,79,0.035)),
+      rgba(23,25,27,0.5);
+    backdrop-filter:blur(20px) saturate(150%);
+    -webkit-backdrop-filter:blur(20px) saturate(150%);
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:20px;
+    padding:36px;
+    box-shadow:0 1px 0 rgba(255,255,255,0.05) inset, 0 20px 40px rgba(0,0,0,0.2);
+  }
+  @media (max-width:560px){ .contact-form-card{ padding:24px; } }
+  .contact-grid h2{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:clamp(30px,4.5vw,44px);
+    letter-spacing:-0.01em;
+    margin-bottom:18px;
+  }
+  .contact-grid > div:first-child p{
+    color:var(--text-muted);
+    max-width:34ch;
+    margin-bottom:28px;
+  }
+  .contact-direct{
+    font-family:var(--mono);
+    font-size:14px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+  .contact-direct a{ color:var(--text); border-bottom:1px solid var(--border); display:inline-block; padding-bottom:2px; transition:color .2s, border-color .2s; width:fit-content; }
+  .contact-direct a:hover{ color:var(--accent); border-color:var(--accent); }
+
+  .contact-social-row{
+    display:flex;
+    gap:12px;
+    margin-top:24px;
+  }
+  .contact-social-row a{
+    width:40px; height:40px;
+    border-radius:50%;
+    border:1px solid var(--border);
+    background:var(--surface);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:border-color .2s ease, background .2s ease, transform .2s ease;
+  }
+  .contact-social-row a:hover{
+    border-color:var(--accent);
+    background:var(--accent);
+    transform:translateY(-3px);
+  }
+  .contact-social-row a svg{
+    width:18px; height:18px;
+    fill:var(--text);
+    transition:fill .2s ease;
+  }
+  .contact-social-row a:hover svg{ fill:#0e1011; }
+
+  form{ display:flex; flex-direction:column; gap:16px; }
+  .form-row{ display:flex; gap:16px; }
+  @media (max-width:560px){ .form-row{ flex-direction:column; } }
+  label{
+    font-family:var(--mono);
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    color:var(--text-muted);
+    margin-bottom:8px;
+    display:block;
+  }
+  .field{ flex:1; }
+  input, textarea{
+    width:100%;
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:13px 16px;
+    color:var(--text);
+    font-family:var(--body);
+    font-size:14px;
+    transition:border-color .2s ease;
+  }
+  input:focus, textarea:focus{ border-color:var(--accent); outline:none; }
+  textarea{ resize:vertical; min-height:120px; }
+  .submit-btn{
+    font-family:var(--mono);
+    font-size:13px;
+    text-transform:uppercase;
+    letter-spacing:.05em;
+    background:var(--accent);
+    color:#0e1011;
+    border:none;
+    border-radius:100px;
+    padding:14px 28px;
+    cursor:pointer;
+    width:fit-content;
+    transition:opacity .2s ease, transform .15s ease;
+  }
+  .submit-btn:hover{ opacity:0.85; }
+  .submit-btn:active{ transform:scale(0.97); }
+  .submit-btn:disabled{ opacity:0.5; cursor:not-allowed; }
+  .form-status{
+    font-family:var(--mono);
+    font-size:13px;
+    margin-top:4px;
+  }
+  .form-status.ok{ color:var(--accent); }
+  .form-status.err{ color:#ff8a8a; }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    padding:36px 0;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--text-muted);
+    flex-wrap:wrap;
+    gap:12px;
+  }
+  .footer-socials{ display:flex; gap:20px; }
+  .footer-socials a:hover{ color:var(--accent); }
+
+  /* ---------- LIGHTBOX ---------- */
+  .lightbox{
+    position:fixed; inset:0;
+    background:rgba(10,11,12,0.92);
+    backdrop-filter:blur(6px);
+    z-index:200;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:40px 20px;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .25s ease;
+  }
+  .lightbox.open{ opacity:1; pointer-events:auto; }
+  .lightbox-inner{ max-width:900px; width:100%; }
+  .lightbox-media{
+    width:fit-content;
+    max-width:100%;
+    margin:0 auto;
+    max-height:78vh;
+    border-radius:var(--radius);
+    overflow:hidden;
+    background:#000;
+  }
+  .lightbox-media img, .lightbox-media video{
+    display:block;
+    width:auto; height:auto;
+    max-width:100%;
+    max-height:78vh;
+    object-fit:contain;
+  }
+  .lightbox-meta{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    margin-top:18px;
+    color:var(--text);
+  }
+  .lightbox-meta h3{ font-family:var(--display); font-size:20px; font-weight:600; }
+  .lightbox-meta span{ font-family:var(--mono); font-size:12px; color:var(--accent-dim); text-transform:uppercase; }
+  .lightbox-close, .lightbox-nav{
+    position:fixed;
+    background:rgba(23,25,27,0.8);
+    border:1px solid var(--border);
+    color:var(--text);
+    width:42px; height:42px;
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer;
+    font-size:18px;
+  }
+  .lightbox-close{ top:28px; right:28px; }
+  .lightbox-nav.prev{ left:24px; top:50%; transform:translateY(-50%); }
+  .lightbox-nav.next{ right:24px; top:50%; transform:translateY(-50%); }
+  @media (max-width:700px){ .lightbox-nav{ display:none; } }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    .marquee-track{ animation:none; }
+    *{ transition:none !important; }
+  }
+</style>
 </head>
 <body>
-  <h1>Hello, ye meri website hai!</h1>
+
+<header id="header">
+  <nav>
+    <a href="#top" class="logo" id="logo">Y<span>.</span></a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">☰</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#top">Home</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#results">Results</a></li>
+      <li><a href="#about">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Let's talk →</a>
+  </nav>
+</header>
+
+<main>
+  <section id="top" class="hero wrap">
+    <div class="hero-noise"></div>
+    <div class="hero-glow"></div>
+    <div class="hero-glow-bottom"></div>
+    <div class="hero-grid">
+      <div>
+        <div class="hero-eyebrow eyebrow" id="heroEyebrow"></div>
+        <h1 class="hero-name" id="heroName"></h1>
+        <p class="hero-sub" id="heroSub"></p>
+        <div class="hero-cta-row">
+          <a href="#contact" class="btn-primary">
+            Hire me
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+          <a href="" download id="resumeBtn" class="btn-secondary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16"/></svg>
+            Download Resume
+          </a>
+        </div>
+      </div>
+      <div class="hero-photo-wrap">
+        <div class="hero-photo-shape"></div>
+        <div class="hero-photo">
+          <img src="" alt="" id="heroPhoto">
+        </div>
+      </div>
+    </div>
+    <div class="scroll-cue"><div class="line"></div>SCROLL</div>
+  </section>
+
+  <div class="marquee-band">
+    <div class="marquee-track" id="marqueeTrack"></div>
+  </div>
+
+  <section id="work" class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <h2 class="section-title">Portfolio</h2>
+        <p class="section-desc">A mix of design and edits — click anything to view it larger.</p>
+      </div>
+      <div class="filters" id="filters">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="branding">Branding / Posters</button>
+        <button class="filter-btn" data-filter="ai-video">AI Video</button>
+        <button class="filter-btn" data-filter="reels-promos">Reels / Promos</button>
+      </div>
+    </div>
+    <div class="work-grid" id="workGrid"></div>
+  </section>
+
+  <section id="results" class="wrap section-divider">
+    <div class="section-head reveal">
+      <div>
+        <h2 class="section-title">Results</h2>
+        <p class="section-desc">Numbers that sum up the work so far.</p>
+      </div>
+    </div>
+    <div class="stats-grid reveal-stagger" id="statsGrid"></div>
+  </section>
+
+  <section id="about" class="about-section">
+    <div class="wrap">
+      <div class="tools-section-head reveal">
+        <span class="eyebrow">Skills</span>
+        <h2>Tools & software I work with</h2>
+      </div>
+      <div class="skills-list reveal-stagger" id="skillsList"></div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact-section">
+    <div class="contact-glow"></div>
+    <div class="wrap">
+      <div class="contact-grid">
+        <div class="reveal">
+          <span class="eyebrow">Contact</span>
+          <h2>Got a project in mind?</h2>
+          <p>Send a brief below, or reach out directly — whichever's easier.</p>
+          <div class="contact-direct" id="contactDirect"></div>
+          <div class="contact-social-row" id="contactSocialRow"></div>
+        </div>
+        <div class="contact-form-card reveal">
+          <form id="contactForm">
+            <div class="form-row">
+              <div class="field">
+                <label for="cf-name">Name</label>
+                <input type="text" id="cf-name" name="name" required>
+              </div>
+              <div class="field">
+                <label for="cf-email">Email</label>
+                <input type="email" id="cf-email" name="email" required>
+              </div>
+            </div>
+            <div class="field">
+              <label for="cf-message">Tell me about the project</label>
+              <textarea id="cf-message" name="message" required></textarea>
+            </div>
+            <button type="submit" class="submit-btn" id="cfSubmit">Send message</button>
+            <p class="form-status" id="cfStatus"></p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap">
+  <span id="footerLine"></span>
+  <div class="footer-socials" id="footerSocials"></div>
+</footer>
+
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lbClose">✕</button>
+  <button class="lightbox-nav prev" id="lbPrev">‹</button>
+  <button class="lightbox-nav next" id="lbNext">›</button>
+  <div class="lightbox-inner">
+    <div class="lightbox-media" id="lbMedia"></div>
+    <div class="lightbox-meta">
+      <h3 id="lbTitle"></h3>
+      <span id="lbTag"></span>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   EDIT YOUR INFO BELOW — this is the only part you need to touch
+   ============================================================ */
+const CONFIG = {
+  name: "Saif Ali",
+  initial: "S",
+  role: "Sr. Graphic Designer & Video Editor",
+  location: "Basti, Uttar Pradesh, India (272002)",
+  tagline: "Senior Graphic Designer and Video Editor with 5+ years crafting logos, posters, motion graphics and full video edits — across branding, advertising and social media, always sharp and on-deadline.",
+  email: "saifalidesigner@gmail.com",
+  phone: "+91 9792008592", // optional, leave blank to hide
+
+  // Your photo for the hero section. Put your image file next to this
+  // HTML file inside an "assets" folder, then point to it here, e.g.
+  // "assets/my-photo.jpg". Leave as-is to use a placeholder for now.
+  photo: "assets/myphoto.jpg",
+
+  // Your resume/CV as a PDF. Put the file in your "assets" folder and
+  // point to it here, e.g. "assets/resume.pdf". This is what the
+  // "Download Resume" button in the hero links to.
+  resumeUrl: "assets/resume.pdf",
+
+  // Used by the contact form. Sign up free at https://formspree.io,
+  // create a form, and paste your endpoint here, e.g.
+  // "https://formspree.io/f/abcd1234"
+  formspreeEndpoint: "",
+
+  socials: [
+    { label: "Instagram", url: "https://www.instagram.com/saif_motions/" },
+    { label: "Behance", url: "https://www.behance.net/saifalidesign" },
+    { label: "LinkedIn", url: "https://www.linkedin.com/in/saif-ali-60635b192/" }
+  ],
+
+  tools: [
+    "Photoshop", "Illustrator", "Adobe XD", "Premiere Pro", "After Effects"
+  ],
+
+  // Not currently displayed anywhere (the bio now lives as a short
+  // version in the hero tagline above). Kept here in case you want to
+  // bring a longer bio back into the page later.
+  about: [
+    "I'm a Senior Graphic Designer and Video Editor with over 5 years of experience crafting visual concepts, motion graphics, and digital media content — from logo design, posters, flyers and banners to full video edits and motion pieces.",
+    "I've worked across branding, advertising and social media for clients in different industries, and I'm a flexible team player who's comfortable jumping between requirements and tight deadlines without losing attention to detail."
+  ],
+
+  // Results / stats shown as animated counters. Edit these numbers freely —
+  // value is the number counted up to, suffix is shown right after it (e.g. "+", "%", "K").
+  stats: [
+    { value: 5, suffix: "+", label: "Years of Experience" },
+    { value: 150, suffix: "+", label: "Projects Delivered" },
+    { value: 50, suffix: "+", label: "Happy Clients" },
+    { value: 300, suffix: "+", label: "Videos & Reels Edited" }
+  ],
+
+  // Experience timeline. Each entry needs: role (your job title),
+  // company (where you worked), duration (e.g. "Jan 2023 — Present"),
+  // and points (an array of short bullet lines about what you did).
+  // List them newest first. Copy/paste a block below to add more rows.
+  experience: [
+    {
+      role: "Sr. Graphic Designer & Video Editor",
+      company: "Pentableu",
+      duration: "Oct 2021 — Present",
+      points: [
+        "Designing and delivering high-quality motion graphics, video edits, and digital creatives as per client requirements",
+        "Collaborating with teams to develop visual assets for product launches and social media",
+        "Creating visual layouts, dynamic social media creatives, and high-impact reels"
+      ]
+    },
+    {
+      role: "Graphic Designer",
+      company: "Aloki Technologies",
+      duration: "Apr 2020 — Sep 2021",
+      points: [
+        "Executed brand-focused content for digital marketing campaigns",
+        "Worked on client branding, advertising creatives, and digital assets for promotional use"
+      ]
+    },
+    {
+      role: "Graphic Designer",
+      company: "Crosa Creative & Concept",
+      duration: "Dec 2019 — Mar 2020",
+      points: [
+        "Assisted senior designers on graphic projects, gaining hands-on experience in branding and print design"
+      ]
+    },
+    {
+      role: "Junior Graphic Designer",
+      company: "Okaw Solutions",
+      duration: "Aug 2019 — Nov 2019",
+      points: []
+    }
+  ],
+
+  // Work items. type: "image" or "video".
+  // category must be one of: "branding", "ai-video", "reels-promos"
+  // — these match the three filter buttons above.
+  // For video items, set "src" to your video file and "poster" to a
+  // thumbnail image. For image items, just set "src".
+  // The grid below is a masonry layout — vertical, horizontal, and
+  // square pieces all keep their real shape automatically. No cropping,
+  // no extra setup needed; just drop in your files.
+  work: [
+    { title: "Sunscreen — Product Poster", category: "branding", type: "image", tag: "Poster", src: "assets/posters/Skin_poster.jpg" },
+    { title: "Luxury Travel — Poster", category: "branding", type: "image", tag: "Poster", src: "assets/posters/Travel_Poster.png" },
+    { title: "PSP Night — Artist Flyer", category: "branding", type: "image", tag: "Flyer", src: "assets/posters/Artist_flyer.png" },
+    { title: "Chandni Bar Night — Concert Flyer", category: "branding", type: "image", tag: "Flyer", src: "assets/posters/Concert_flyer.jpg" },
+    { title: "God's Plan — Cricket Poster", category: "branding", type: "image", tag: "Poster", src: "assets/posters/Cricket_poster.jpg" },
+    { title: "Eid Al Adha — Festive Poster", category: "branding", type: "image", tag: "Poster", src: "assets/posters/Festive_poster.jpg" },
+    { title: "Pizza Pizza — Food Poster", category: "branding", type: "image", tag: "Poster", src: "assets/posters/Food_poster.jpg" },
+    { title: "Lit Diwali — Live Music Flyer", category: "branding", type: "image", tag: "Flyer", src: "assets/posters/Live_music_flyer.png" },
+    { title: "iPhone 17 Pro — Product Poster", category: "branding", type: "image", tag: "Poster", src: "assets/posters/Product_poster.jpg" },
+    { title: "Trending Reels Edit", category: "reels-promos", type: "video", tag: "Reel", poster: "assets/videos/Trending_reels-thumb.jpg", src: "assets/videos/Trending_reels.mp4" },
+    { title: "SaaS Product Animation", category: "reels-promos", type: "video", tag: "Promo", poster: "assets/videos/SAAS_Animation-thumb.jpg", src: "assets/videos/SAAS_Animation.mp4" },
+    { title: "Voice Over Reel", category: "reels-promos", type: "video", tag: "Reel", poster: "assets/videos/Voice_over_reel-thumb.jpg", src: "assets/videos/Voice_over_reel.mp4" },
+    { title: "New Year Edit", category: "reels-promos", type: "video", tag: "Reel", poster: "assets/videos/New_year_edit-thumb.jpg", src: "assets/videos/New_year_edit.mp4" },
+    { title: "Water Park Reel Edit", category: "reels-promos", type: "video", tag: "Reel", poster: "assets/videos/Water_Park_reel_edit-thumb.jpg", src: "assets/videos/Water_Park_reel_edit.mp4" },
+    { title: "Travel Reel Edit", category: "reels-promos", type: "video", tag: "Reel", poster: "assets/videos/Travel_reel_edit-thumb.jpg", src: "assets/videos/Travel_reel_edit.mp4" },
+    { title: "Food Making Story Reel", category: "reels-promos", type: "video", tag: "Reel", poster: "assets/videos/Food_making_story_reel-thumb.jpg", src: "assets/videos/Food_making_story_reel.mp4" },
+    { title: "Cloth Transition Reel", category: "reels-promos", type: "video", tag: "Reel", poster: "assets/videos/Cloth_transition_reel-thumb.jpg", src: "assets/videos/Cloth_transition_reel.mp4" },
+    { title: "Client Wedding Anniversary Edit", category: "reels-promos", type: "video", tag: "Promo", poster: "assets/videos/Client_wedding_anniversary_edit-thumb.jpg", src: "assets/videos/Client_wedding_anniversary_edit.mp4" },
+    { title: "Gym Reel Edit", category: "reels-promos", type: "video", tag: "Reel", poster: "assets/videos/Gym_reel_edit-thumb.jpg", src: "assets/videos/Gym_reel_edit.mp4" },
+    { title: "Wedding Invitation Reel", category: "reels-promos", type: "video", tag: "Reel", poster: "assets/videos/Wedding_Invitation_reel-thumb.jpg", src: "assets/videos/Wedding_Invitation_reel.mp4" },
+    { title: "Electronics CGI Video", category: "ai-video", type: "video", tag: "AI Video", poster: "assets/videos/Electronics_CGI_Video-thumb.jpg", src: "assets/videos/Electronics_CGI_Video.mp4" },
+    { title: "i2 film and i2Coating reel new", category: "ai-video", type: "video", tag: "AI Video", poster: "assets/videos/i2_film_and_i2Coating_reel_new-thumb.jpg", src: "assets/videos/i2_film_and_i2Coating_reel_new.mp4" },
+    { title: "Insurance awareness", category: "ai-video", type: "video", tag: "AI Video", poster: "assets/videos/Insurance_awareness-thumb.jpg", src: "assets/videos/Insurance_awareness.mp4" },
+    { title: "IPL promotion reel", category: "ai-video", type: "video", tag: "AI Video", poster: "assets/videos/IPL_promotion_reel-thumb.jpg", src: "assets/videos/IPL_promotion_reel.mp4" },
+    { title: "Jwellery protection", category: "ai-video", type: "video", tag: "AI Video", poster: "assets/videos/Jwellery_protection-thumb.jpg", src: "assets/videos/Jwellery_protection.mp4" },
+    { title: "Promotion CGI Video", category: "ai-video", type: "video", tag: "AI Video", poster: "assets/videos/Promotion_CGI_Video-thumb.jpg", src: "assets/videos/Promotion_CGI_Video.mp4" },
+    { title: "Roadside Assistant -Ai", category: "ai-video", type: "video", tag: "AI Video", poster: "assets/videos/Roadside_Assistant_-Ai-thumb.jpg", src: "assets/videos/Roadside_Assistant_-Ai.mp4" },
+    { title: "Travel protection", category: "ai-video", type: "video", tag: "AI Video", poster: "assets/videos/Travel_protection-thumb.jpg", src: "assets/videos/Travel_protection.mp4" },
+    { title: "Tyre protection pixar style", category: "ai-video", type: "video", tag: "AI Video", poster: "assets/videos/Tyre_protection_pixar_style-thumb.jpg", src: "assets/videos/Tyre_protection_pixar_style.mp4" },
+    { title: "Wahing Machine AI Add", category: "ai-video", type: "video", tag: "AI Video", poster: "assets/videos/Wahing_Machine_AI_Add-thumb.jpg", src: "assets/videos/Wahing_Machine_AI_Add.mp4" }
+  ]
+};
+/* ============================================================
+   END OF EDITABLE CONFIG — rendering logic below
+   ============================================================ */
+
+document.getElementById('logo').textContent = '';
+document.getElementById('logo').append(CONFIG.initial, Object.assign(document.createElement('span'), { textContent: '.' }));
+
+document.getElementById('heroEyebrow').textContent = CONFIG.role;
+/* ---------- HERO NAME TYPOGRAPHY REVEAL (letters rise up into place) ---------- */
+function revealHeroName(){
+  const el = document.getElementById('heroName');
+  const full = CONFIG.name;
+  const words = full.split(' ');
+  const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  let charIndex = 0;
+  const html = words.map((word, wi) => {
+    const isLast = wi === words.length - 1;
+    const chars = word.split('').map(ch => {
+      const delay = (charIndex * 0.035).toFixed(2);
+      charIndex++;
+      return `<span class="char"${prefersReduced ? '' : ` style="animation-delay:${delay}s"`}>${ch}</span>`;
+    }).join('');
+    const spacer = !isLast ? '<span class="char" style="animation-delay:' + (charIndex * 0.035).toFixed(2) + 's">&nbsp;</span>' : '';
+    if (!isLast) charIndex++;
+    return `<span class="word${isLast ? ' accent' : ''}">${chars}${spacer}</span>`;
+  }).join('');
+
+  el.innerHTML = html;
+
+  if (prefersReduced){
+    el.querySelectorAll('.char').forEach(c => { c.style.animation = 'none'; c.style.opacity = 1; c.style.transform = 'none'; });
+  }
+}
+revealHeroName();
+
+document.getElementById('heroSub').textContent = CONFIG.tagline;
+document.getElementById('resumeBtn').href = CONFIG.resumeUrl;
+
+const heroPhoto = document.getElementById('heroPhoto');
+heroPhoto.src = CONFIG.photo;
+heroPhoto.alt = CONFIG.name;
+
+const marquee = document.getElementById('marqueeTrack');
+const toolsDoubled = [...CONFIG.tools, ...CONFIG.tools, ...CONFIG.tools, ...CONFIG.tools];
+marquee.innerHTML = `<span>${toolsDoubled.map(t => `<b>${t}</b>`).join('')}</span>`.repeat(1);
+// Build as one continuous flex line, duplicated for seamless loop
+marquee.innerHTML = '';
+const span1 = document.createElement('span');
+span1.innerHTML = CONFIG.tools.map(t => `<b>${t}</b>`).join('<span style="color:var(--accent);margin:0 0">  •  </span>');
+const span2 = span1.cloneNode(true);
+marquee.append(span1, span2);
+
+document.getElementById('skillsList').innerHTML = CONFIG.tools.map(t => `<span class="skill-pill">${t}</span>`).join('');
+
+document.getElementById('statsGrid').innerHTML = CONFIG.stats.map((s, i) => `
+  <div class="stat-item">
+    <div class="stat-number" data-value="${s.value}" data-suffix="${s.suffix || ''}">0${s.suffix || ''}</div>
+    <div class="stat-label">${s.label}</div>
+  </div>
+`).join('');
+
+/* ---------- STATS COUNT-UP ON SCROLL ---------- */
+function animateCount(el){
+  const target = parseFloat(el.dataset.value);
+  const suffix = el.dataset.suffix || '';
+  const duration = 1400;
+  const startTime = performance.now();
+  function tick(now){
+    const t = Math.min(1, (now - startTime) / duration);
+    const eased = 1 - Math.pow(1 - t, 3);
+    const current = Math.round(target * eased);
+    el.textContent = current + suffix;
+    if (t < 1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+const statNumbers = document.querySelectorAll('.stat-number');
+const statsObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting){
+      animateCount(entry.target);
+      statsObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.4 });
+statNumbers.forEach(el => statsObserver.observe(el));
+
+const contactDirect = document.getElementById('contactDirect');
+let directHTML = `<a href="mailto:${CONFIG.email}">${CONFIG.email}</a>`;
+if (CONFIG.phone) directHTML += `<a href="tel:${CONFIG.phone}">${CONFIG.phone}</a>`;
+contactDirect.innerHTML = directHTML;
+
+// Recognized platform icons. Add more here if you use other platforms —
+// just follow the same pattern: lowercase label -> SVG markup.
+const SOCIAL_ICONS = {
+  instagram: `<svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.85.07 1.17.06 1.97.24 2.43.41a4.9 4.9 0 0 1 1.77 1.15 4.9 4.9 0 0 1 1.15 1.77c.17.46.35 1.26.41 2.43.06 1.25.07 1.65.07 4.85s0 3.6-.07 4.85c-.06 1.17-.24 1.97-.41 2.43a4.9 4.9 0 0 1-1.15 1.77 4.9 4.9 0 0 1-1.77 1.15c-.46.17-1.26.35-2.43.41-1.25.06-1.65.07-4.85.07s-3.6 0-4.85-.07c-1.17-.06-1.97-.24-2.43-.41a4.9 4.9 0 0 1-1.77-1.15 4.9 4.9 0 0 1-1.15-1.77c-.17-.46-.35-1.26-.41-2.43C2.21 15.6 2.2 15.2 2.2 12s0-3.6.07-4.85c.06-1.17.24-1.97.41-2.43a4.9 4.9 0 0 1 1.15-1.77A4.9 4.9 0 0 1 5.6 1.8c.46-.17 1.26-.35 2.43-.41C9.28 1.33 9.68 1.32 12 1.32M12 0C9.7 0 9.3 0 8.04.07c-1.27.06-2.15.27-2.91.57a6.6 6.6 0 0 0-2.39 1.55 6.6 6.6 0 0 0-1.55 2.4c-.3.75-.5 1.63-.57 2.9C.07 8.7.07 9.1.07 12s0 3.3.07 4.56c.06 1.27.27 2.15.57 2.9a6.6 6.6 0 0 0 1.55 2.4 6.6 6.6 0 0 0 2.4 1.55c.75.3 1.63.5 2.9.57 1.27.06 1.67.07 3.96.07s2.7 0 3.96-.07c1.27-.06 2.15-.27 2.9-.57a6.6 6.6 0 0 0 2.4-1.55 6.6 6.6 0 0 0 1.55-2.4c.3-.75.5-1.63.57-2.9.06-1.27.07-1.67.07-3.96s0-2.7-.07-3.96c-.06-1.27-.27-2.15-.57-2.9a6.6 6.6 0 0 0-1.55-2.4A6.6 6.6 0 0 0 16.86.64c-.75-.3-1.63-.5-2.9-.57C12.7 0 12.3 0 12 0Zm0 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84Zm0 10.16A4 4 0 1 1 16 12a4 4 0 0 1-4 4Zm6.4-10.6a1.44 1.44 0 1 1-1.44-1.44 1.44 1.44 0 0 1 1.44 1.44Z"/></svg>`,
+  behance: `<svg viewBox="0 0 24 24"><path d="M7.8 10.4c.9-.4 1.4-1.1 1.4-2.2 0-2.1-1.5-3-3.6-3H0v13.3h5.8c2.3 0 4.1-1 4.1-3.4 0-1.5-.7-2.5-2.1-2.7v-.1ZM2.7 7.1h2.5c1 0 1.9.2 1.9 1.4 0 1.1-.8 1.5-1.9 1.5H2.7V7.1Zm2.8 9.4H2.7v-3.4h2.9c1.2 0 2 .5 2 1.7 0 1.3-1 1.7-2.1 1.7ZM24 13.2c0-3-1.7-5.5-5-5.5-3.1 0-5.3 2.3-5.3 5.5 0 3.3 2 5.5 5.3 5.5 2.6 0 4.3-1.2 5-3.4h-2.4c-.2.7-1.1 1.2-2.4 1.2-1.7 0-2.6-1-2.7-2.6H24v-.7Zm-7.5-1.4c.2-1.4 1.1-2.2 2.5-2.2s2.2.9 2.3 2.2h-4.8ZM13.6 6h6.2v1.4h-6.2V6Z"/></svg>`,
+  linkedin: `<svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.8 0 0 .78 0 1.75v20.5C0 23.22.8 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.75V1.75C24 .78 23.2 0 22.22 0Z"/></svg>`
+};
+
+const contactSocialRow = document.getElementById('contactSocialRow');
+contactSocialRow.innerHTML = CONFIG.socials
+  .map(s => {
+    const icon = SOCIAL_ICONS[s.label.toLowerCase()] || '';
+    return `<a href="${s.url}" target="_blank" rel="noopener" aria-label="${s.label}">${icon}</a>`;
+  })
+  .join('');
+
+document.getElementById('footerLine').textContent = `© ${new Date().getFullYear()} ${CONFIG.name}. Built with care.`;
+document.getElementById('footerSocials').innerHTML = CONFIG.socials.map(s => `<a href="${s.url}" target="_blank" rel="noopener">${s.label}</a>`).join('');
+
+/* ---------- WORK GRID ---------- */
+const workGrid = document.getElementById('workGrid');
+function cardHTML(item, i){
+  const mediaHTML = item.type === 'video'
+    ? `<video src="${item.src}" poster="${item.poster}" muted loop playsinline preload="metadata"></video>`
+    : `<img src="${item.src}" alt="${item.title}" loading="lazy">`;
+  const badge = item.type === 'video'
+    ? `<div class="play-badge"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>`
+    : '';
+  return `
+    <article class="work-card" data-category="${item.category}" data-index="${i}">
+      <div class="work-media">${mediaHTML}${badge}</div>
+      <div class="work-info">
+        <span class="work-title">${item.title}</span>
+        <span class="work-tag">${item.tag}</span>
+      </div>
+    </article>`;
+}
+workGrid.innerHTML = CONFIG.work.map(cardHTML).join('');
+
+// Hover-to-preview video cards
+workGrid.querySelectorAll('.work-card').forEach(card => {
+  const video = card.querySelector('video');
+  if (!video) return;
+  card.addEventListener('mouseenter', () => { video.play().catch(()=>{}); });
+  card.addEventListener('mouseleave', () => { video.pause(); video.currentTime = 0; });
+});
+
+/* ---------- FILTERS ---------- */
+// Keeps the masonry grid balanced: if a filtered category has fewer
+// items than the usual column count, reduce the columns so no empty
+// column is left hanging on the right.
+function maxColumnsForViewport(){
+  const w = window.innerWidth;
+  if (w <= 480) return 1;
+  if (w <= 760) return 2;
+  if (w <= 1100) return 3;
+  return 4;
+}
+function rebalanceWorkGrid(){
+  const visibleCount = workGrid.querySelectorAll('.work-card:not(.hide)').length;
+  const target = Math.max(1, Math.min(maxColumnsForViewport(), visibleCount || 1));
+  workGrid.style.columnCount = target;
+}
+window.addEventListener('resize', rebalanceWorkGrid);
+rebalanceWorkGrid();
+
+document.getElementById('filters').addEventListener('click', (e) => {
+  const btn = e.target.closest('.filter-btn');
+  if (!btn) return;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const filter = btn.dataset.filter;
+  workGrid.querySelectorAll('.work-card').forEach(card => {
+    card.classList.toggle('hide', filter !== 'all' && card.dataset.category !== filter);
+  });
+  rebalanceWorkGrid();
+});
+
+/* ---------- LIGHTBOX ---------- */
+const lightbox = document.getElementById('lightbox');
+const lbMedia = document.getElementById('lbMedia');
+const lbTitle = document.getElementById('lbTitle');
+const lbTag = document.getElementById('lbTag');
+let currentIndex = 0;
+
+function openLightbox(index){
+  currentIndex = index;
+  renderLightbox();
+  lightbox.classList.add('open');
+}
+function renderLightbox(){
+  const item = CONFIG.work[currentIndex];
+  lbMedia.innerHTML = item.type === 'video'
+    ? `<video src="${item.src}" poster="${item.poster}" controls autoplay playsinline></video>`
+    : `<img src="${item.src}" alt="${item.title}">`;
+  lbTitle.textContent = item.title;
+  lbTag.textContent = item.tag;
+}
+function closeLightbox(){
+  lightbox.classList.remove('open');
+  lbMedia.innerHTML = '';
+}
+workGrid.addEventListener('click', (e) => {
+  const card = e.target.closest('.work-card');
+  if (!card) return;
+  openLightbox(Number(card.dataset.index));
+});
+document.getElementById('lbClose').addEventListener('click', closeLightbox);
+document.getElementById('lbPrev').addEventListener('click', () => { currentIndex = (currentIndex - 1 + CONFIG.work.length) % CONFIG.work.length; renderLightbox(); });
+document.getElementById('lbNext').addEventListener('click', () => { currentIndex = (currentIndex + 1) % CONFIG.work.length; renderLightbox(); });
+lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+document.addEventListener('keydown', (e) => {
+  if (!lightbox.classList.contains('open')) return;
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowRight') document.getElementById('lbNext').click();
+  if (e.key === 'ArrowLeft') document.getElementById('lbPrev').click();
+});
+
+/* ---------- NAV: scroll state, mobile toggle, active link ---------- */
+const header = document.getElementById('header');
+window.addEventListener('scroll', () => {
+  header.classList.toggle('scrolled', window.scrollY > 20);
+});
+
+const navToggle = document.getElementById('navToggle');
+const navLinks = document.getElementById('navLinks');
+navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+const sections = ['top', 'work', 'results', 'about', 'contact'].map(id => document.getElementById(id));
+const navAnchors = Array.from(navLinks.querySelectorAll('a'));
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting){
+      navAnchors.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + entry.target.id));
+    }
+  });
+}, { rootMargin: '-40% 0px -50% 0px' });
+sections.forEach(s => observer.observe(s));
+
+/* ---------- SCROLL REVEAL OBSERVER ---------- */
+const revealEls = document.querySelectorAll('.reveal, .reveal-stagger');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting){
+      entry.target.classList.add('in-view');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+revealEls.forEach(el => revealObserver.observe(el));
+
+/* ---------- CONTACT FORM ---------- */
+const form = document.getElementById('contactForm');
+const status = document.getElementById('cfStatus');
+const submitBtn = document.getElementById('cfSubmit');
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  if (!CONFIG.formspreeEndpoint){
+    status.textContent = "Form isn't connected yet — add your Formspree endpoint in CONFIG to receive messages.";
+    status.className = 'form-status err';
+    return;
+  }
+
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Sending…';
+  status.textContent = '';
+  status.className = 'form-status';
+
+  try {
+    const res = await fetch(CONFIG.formspreeEndpoint, {
+      method: 'POST',
+      headers: { 'Accept': 'application/json' },
+      body: new FormData(form)
+    });
+    if (res.ok){
+      status.textContent = 'Thanks — your message is on its way. I\'ll reply soon.';
+      status.className = 'form-status ok';
+      form.reset();
+    } else {
+      throw new Error('Request failed');
+    }
+  } catch (err){
+    status.textContent = 'Something went wrong sending that — try emailing directly instead.';
+    status.className = 'form-status err';
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Send message';
+  }
+});
+</script>
 </body>
 </html>

@@ -970,6 +970,96 @@
   .lightbox-nav.next{ right:24px; top:50%; transform:translateY(-50%); }
   @media (max-width:700px){ .lightbox-nav{ display:none; } }
 
+  /* ---------- LIGHTBOX: PROCESS LAYOUT (video + making-of gallery) ---------- */
+  .lightbox-inner.has-process{ max-width:1080px; }
+  .process-layout{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+    gap:22px;
+    align-items:stretch;
+    height:80vh;
+    max-height:720px;
+  }
+  .process-layout .lightbox-media{
+    margin:0;
+    max-height:none;
+    height:100%;
+    width:100%;
+  }
+  .process-layout .lightbox-media video{
+    width:100%; height:100%;
+    max-height:none;
+    object-fit:contain;
+    background:#000;
+  }
+  .process-panel{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:22px 22px 18px;
+    display:flex;
+    flex-direction:column;
+    min-height:0;
+    overflow:hidden;
+  }
+  .process-panel h3{
+    font-family:var(--display);
+    font-size:19px;
+    font-weight:600;
+    margin-bottom:4px;
+  }
+  .process-panel .process-tag{
+    font-family:var(--mono);
+    font-size:11px;
+    color:var(--accent-dim);
+    text-transform:uppercase;
+    display:block;
+    margin-bottom:12px;
+  }
+  .process-label{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin-bottom:6px;
+  }
+  .process-desc{
+    font-size:12.5px;
+    line-height:1.55;
+    color:var(--text-muted);
+    overflow-y:auto;
+    padding-right:4px;
+    flex:0 1 auto;
+    max-height:34%;
+  }
+  .process-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:7px;
+    margin-top:12px;
+    overflow-y:auto;
+    padding-right:2px;
+  }
+  .process-grid img{
+    width:100%;
+    aspect-ratio:1;
+    object-fit:cover;
+    border-radius:8px;
+    border:1px solid var(--border);
+  }
+  @media (max-width:860px){
+    .process-layout{
+      grid-template-columns:1fr;
+      height:auto;
+      max-height:none;
+    }
+    .process-layout .lightbox-media{ max-height:42vh; }
+    .process-layout .lightbox-media video{ max-height:42vh; }
+    .process-panel{ max-height:none; }
+    .process-desc{ max-height:none; }
+  }
+
   @media (prefers-reduced-motion: reduce){
     html{ scroll-behavior:auto; }
     .marquee-track{ animation:none; }
@@ -1251,7 +1341,18 @@ const CONFIG = {
     { title: "Promotion CGI Video", category: "ai-video", type: "video", tag: "AI Video", poster: "assets/videos/Promotion_CGI_Video-thumb.jpg", src: "assets/videos/Promotion_CGI_Video.mp4" },
     { title: "Roadside Assistant -Ai", category: "ai-video", type: "video", tag: "AI Video", poster: "assets/videos/Roadside_Assistant_-Ai-thumb.jpg", src: "assets/videos/Roadside_Assistant_-Ai.mp4" },
     { title: "Travel protection", category: "ai-video", type: "video", tag: "AI Video", poster: "assets/videos/Travel_protection-thumb.jpg", src: "assets/videos/Travel_protection.mp4" },
-    { title: "Tyre protection pixar style", category: "ai-video", type: "video", tag: "AI Video", poster: "assets/videos/Tyre_protection_pixar_style-thumb.jpg", src: "assets/videos/Tyre_protection_pixar_style.mp4" },
+    { title: "Tyre protection pixar style", category: "ai-video", type: "video", tag: "AI Video", poster: "assets/videos/Tyre_protection_pixar_style-thumb.jpg", src: "assets/videos/Tyre_protection_pixar_style.mp4",
+      process: "A Pixar-inspired promotional reel designed to showcase tyre protection through cinematic visuals and engaging storytelling. The project combines stylized 3D imagery, dynamic motion, and premium visual design to create a high-impact advertisement.<br><br>The creative workflow was powered by ChatGPT, Nano Banana, and Kling AI, followed by professional motion design and post-production.<br><br>Below are some of the key generated images used throughout the creative process.",
+      processImages: [
+        "assets/process/tyre-protection/1.jpg",
+        "assets/process/tyre-protection/2.jpg",
+        "assets/process/tyre-protection/3.jpg",
+        "assets/process/tyre-protection/4.jpg",
+        "assets/process/tyre-protection/5.jpg",
+        "assets/process/tyre-protection/6.jpg",
+        "assets/process/tyre-protection/7.jpg"
+      ]
+    },
     { title: "Wahing Machine AI Add", category: "ai-video", type: "video", tag: "AI Video", poster: "assets/videos/Wahing_Machine_AI_Add-thumb.jpg", src: "assets/videos/Wahing_Machine_AI_Add.mp4" }
   ]
 };
@@ -1440,15 +1541,41 @@ function openLightbox(index){
 }
 function renderLightbox(){
   const item = CONFIG.work[currentIndex];
-  lbMedia.innerHTML = item.type === 'video'
+  const lightboxInner = document.querySelector('.lightbox-inner');
+  const hasProcess = item.process && item.processImages && item.processImages.length;
+
+  lightboxInner.classList.toggle('has-process', !!hasProcess);
+
+  const mediaHTML = item.type === 'video'
     ? `<video src="${item.src}" poster="${item.poster}" controls autoplay playsinline></video>`
     : `<img src="${item.src}" alt="${item.title}">`;
-  lbTitle.textContent = item.title;
-  lbTag.textContent = item.tag;
+
+  const currentMediaEl = document.getElementById('lbMedia');
+  if (hasProcess){
+    const gridHTML = item.processImages.map(src => `<img src="${src}" alt="process frame" loading="lazy">`).join('');
+    currentMediaEl.outerHTML = `
+      <div class="process-layout" id="lbMedia">
+        <div class="lightbox-media">${mediaHTML}</div>
+        <div class="process-panel">
+          <h3>${item.title}</h3>
+          <span class="process-tag">${item.tag}</span>
+          <p class="process-label">Process</p>
+          <p class="process-desc">${item.process}</p>
+          <div class="process-grid">${gridHTML}</div>
+        </div>
+      </div>`;
+  } else {
+    currentMediaEl.outerHTML = `<div class="lightbox-media" id="lbMedia">${mediaHTML}</div>`;
+  }
+
+  lbTitle.textContent = hasProcess ? '' : item.title;
+  lbTag.textContent = hasProcess ? '' : item.tag;
 }
 function closeLightbox(){
   lightbox.classList.remove('open');
-  lbMedia.innerHTML = '';
+  const currentMediaEl = document.getElementById('lbMedia');
+  if (currentMediaEl) currentMediaEl.innerHTML = '';
+  document.querySelector('.lightbox-inner').classList.remove('has-process');
 }
 workGrid.addEventListener('click', (e) => {
   const card = e.target.closest('.work-card');
